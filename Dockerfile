@@ -30,8 +30,7 @@ ARG GID=1000
 
 RUN set -eux \
     && adduser --disabled-password --uid=$UID --gecos '' --no-create-home ${USER} \
-    && install --directory --owner=${USER} /etc/libretime /srv/libretime \
-    && usermod -aG audio libretime
+    && install --directory --owner=${USER} /etc/libretime /srv/libretime
 
 ENV LIBRETIME_CONFIG_FILEPATH=/etc/libretime/config.yml
 
@@ -43,7 +42,6 @@ RUN set -eux \
     && DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     $(python3 /tmp/packages.py --format=line --exclude=python bullseye /tmp/packages.ini) \
-    alsa-utils \
     && rm -rf /var/lib/apt/lists/* \
     && rm -f /tmp/packages.py /tmp/packages.ini
 

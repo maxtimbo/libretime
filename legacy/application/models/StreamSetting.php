@@ -153,6 +153,7 @@ class Application_Model_StreamSetting
         $settings['icecast_vorbis_metadata'] = self::getIcecastVorbisMetadata();
         $settings['output_sound_device'] = self::getOutputSoundDevice();
         $settings['output_sound_device_type'] = self::getOutputSoundDeviceType();
+	$settings['output_sound_device_device'] = self::getOutputSoundDeviceDevice();
 
         return $settings;
     }
@@ -239,5 +240,10 @@ class Application_Model_StreamSetting
     public static function getOutputSoundDeviceType()
     {
         return Config::get('stream.outputs.system.0.kind') ?? '';
+    }
+
+    public static function getOutputSoundDeviceDevice()
+    {
+    	return Config::get('stream.outputs.system.0.device') ?? '';
     }
 }

@@ -256,6 +256,7 @@ class SystemOutputKind(str, Enum):
 class SystemOutput(BaseModel):
     enabled: bool = False
     kind: SystemOutputKind = SystemOutputKind.ALSA
+    device: Optional[str] = None
 
 
 # pylint: disable=too-few-public-methods

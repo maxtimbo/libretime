@@ -124,7 +124,11 @@ output.shoutcast(
 log("output.{{ output.kind.value }} is not defined!")
 %endif
 %ifdef output.{{ output.kind.value }}
-output.{{ output.kind.value }}(id="{{ output.kind.value }}:{{ loop.index }}", s)
+output.{{ output.kind.value }}(
+  id="{{ output.kind.value }}:{{ loop.index }}", 
+  device="{{ output.device }}",
+  s
+)
 %endif
 
 {% endif -%}

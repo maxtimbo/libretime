@@ -28,6 +28,7 @@ def cli(log_level: str, log_filepath: Optional[Path], config_filepath: Optional[
     """
     setup_logger(log_level, log_filepath)
     config = Config(config_filepath)
+    logger.info("~~~ TIM ENTRY Config: %s", config)
 
     api_client = ApiClient(
         base_url=config.general.public_url,
@@ -38,6 +39,8 @@ def cli(log_level: str, log_filepath: Optional[Path], config_filepath: Optional[
 
     info = Info(**api_client.get_info().json())
     preferences = StreamPreferences(**api_client.get_stream_preferences().json())
+    logger.info("~~~ TIM ENTRY Preferences: %s", preferences)
+
 
     entrypoint_filepath = Path.cwd() / "radio.liq"
     entrypoint_filepath.write_text(
